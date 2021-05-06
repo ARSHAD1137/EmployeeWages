@@ -8,38 +8,37 @@ namespace EmployeeWages
         public const int PART_TIME = 2;
         public const int EMP_RATE_PER_HOUR = 20;
         public const int NUM_OF_WORKINGDAYS = 20;
+        public const int MAX_HRS_IN_MONTH = 100;
 
         static void Main(string[] args)
         { 
             // Variables
             int empHrs = 0;
-            int empWage = 0;
-            int totalEmpWage = 0;
+            int totalEmpHrs = 0;
+            int totalWorkingDay = 0;
 
             //Computation
-            for (int day = 0; day < NUM_OF_WORKINGDAYS; day++)
+            while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDay < NUM_OF_WORKINGDAYS)
             {
+                totalWorkingDay++;
                 Random random = new Random();
                 int empcheck = random.Next(0, 3);
                 switch (empcheck)
                 {
                     case 1:
                         empHrs = 8;
-                        empWage = empHrs * EMP_RATE_PER_HOUR;
                         break;
                     case 2:
                         empHrs = 4;
-                        empWage = empHrs * EMP_RATE_PER_HOUR;
                         break;
                     case 3:
                         empHrs = 0;
-                        empWage = empHrs * EMP_RATE_PER_HOUR;
                         break;
                 }
-                empWage = empHrs * EMP_RATE_PER_HOUR;
-                totalEmpWage += empWage;
-                Console.WriteLine("EmpWage:" + empWage);
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Day#:" + totalWorkingDay + "Emp Hrs:" + empHrs);
             }
+            int totalEmpWage = totalEmpHrs + EMP_RATE_PER_HOUR;
             Console.WriteLine("Total Emp Wage:" + totalEmpWage);
 
 
